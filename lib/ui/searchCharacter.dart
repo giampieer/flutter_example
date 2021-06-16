@@ -1,4 +1,5 @@
 import 'package:app_prueba/model/character.dart';
+import 'package:app_prueba/ui/detailCharacter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:app_prueba/service/services.dart';
@@ -100,7 +101,7 @@ class SearchState extends State<Search> {
                         color: Colors.white,
                         height: size.height * 8.4,
                         width: size.width * 10,
-                        child: _IsSearching ? _buildSearchList() : Container(),
+                        child: _buildSearchList(),
                       )
                     ],
                   ),
@@ -133,7 +134,20 @@ class SearchState extends State<Search> {
                       itemBuilder: (context, index) {
                         String data = listCharacters[index].name;
                         return GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              return Navigator.of(context).push(
+                                  PageRouteBuilder(pageBuilder:
+                                      (BuildContext context, _, __) {
+                                return detailCharacter(
+                                    character: listCharacters[index]);
+                              }, transitionsBuilder: (_,
+                                      Animation<double> animation,
+                                      __,
+                                      Widget child) {
+                                return FadeTransition(
+                                    opacity: animation, child: child);
+                              }));
+                            },
                             child: Card(
                               elevation: 0,
                               shape: RoundedRectangleBorder(
@@ -219,7 +233,20 @@ class SearchState extends State<Search> {
                             .contains(_searchText.toLowerCase())) {
                           statusSearch = 1;
                           return GestureDetector(
-                              onTap: () {},
+                              onTap: () {
+                                return Navigator.of(context).push(
+                                    PageRouteBuilder(pageBuilder:
+                                        (BuildContext context, _, __) {
+                                  return detailCharacter(
+                                      character: listCharacters[index]);
+                                }, transitionsBuilder: (_,
+                                        Animation<double> animation,
+                                        __,
+                                        Widget child) {
+                                  return FadeTransition(
+                                      opacity: animation, child: child);
+                                }));
+                              },
                               child: Card(
                                 elevation: 0,
                                 shape: RoundedRectangleBorder(

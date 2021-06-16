@@ -45,8 +45,8 @@ class Character {
         species: "",
         type: "",
         gender: "",
-        origin: Origin(),
-        location: Location(),
+        origin: Origin(name: ""),
+        location: Location(name: ""),
         image: "");
   }
 }
